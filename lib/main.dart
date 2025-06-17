@@ -174,39 +174,53 @@ class ActivityDisplay extends StatefulWidget {
 
 class _ActivityDisplayState extends State<ActivityDisplay> {
 
+
+
   @override
   Widget build(BuildContext context) 
   {
+    DateTime now = DateTime.now();
+    String convertedDateTime = "${now.weekday==1? "Monday ": now.weekday==2? "Tuesday ": now.weekday==3? "Wednesday ": now.weekday==4? "Thursday ": now.weekday==5? "Friday ":"Its the weekend why are you here? "
+    }${now.day.toString()}/${now.month.toString().padLeft(2,'0')}/${now.year.toString().padLeft(2,'0')}";
+
     return Scaffold(
       appBar: AppBar(title: Text(widget.title),),
       body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+        child: Column(
+          children: [
+            Text(convertedDateTime),
             Spacer(),
-            Column(
-              children: [
-                Image.asset(widget.morning.image),
-                Text(widget.morning.text),
-              ],
-            ),
-            Spacer(),
-            Column(
-              children: [
-                Image.asset(widget.lunch.image),
-                Text(widget.lunch.text),
-              ],
-            ),
-            Spacer(),
-            Column(
-              children: [
-                Image.asset(widget.afternoon.image),
-                Text(widget.afternoon.text),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Spacer(),
+                Column(
+                  children: [
+                    Image.asset(widget.morning.image),
+                    Text(widget.morning.text),
+                  ],
+                ),
+                Spacer(),
+                Column(
+                  children: [
+                    Image.asset(widget.lunch.image),
+                    Text(widget.lunch.text),
+                  ],
+                ),
+                Spacer(),
+                Column(
+                  children: [
+                    Image.asset(widget.afternoon.image),
+                    Text(widget.afternoon.text),
+                  ],
+                ),
+                Spacer(),
               ],
             ),
             Spacer(),
           ],
         ),
+
       ),
 
     );
