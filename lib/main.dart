@@ -149,7 +149,7 @@ class _ActivityEditorState extends State<ActivityEditor> {
               ],
             ),
             ElevatedButton(
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActivityDisplay(title: 'ActivityDisplay', morning: morning, lunch: lunch, afternoon: afternoon,))),
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActivityDisplay(title: 'ActivityDisplay (REMOVE THE APPBAR ON THIS SCREEN)', morning: morning, lunch: lunch, afternoon: afternoon,))),
               // onPressed: () => print('${morning.image}, ${lunch.image}, ${afternoon.image}'),
               child: Text('Run Selection'))
           ],
