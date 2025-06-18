@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -95,9 +96,12 @@ class ActivityEditor extends StatefulWidget {
 
 class _ActivityEditorState extends State<ActivityEditor> {
 
-  Activity morning = Activity.a;
-  Activity lunch = Activity.a;
-  Activity afternoon = Activity.a;
+  Activity act1 = Activity.a;
+  Activity act2 = Activity.a;
+  Activity act3 = Activity.a;
+  Activity act4 = Activity.a;
+  Activity act5 = Activity.a;
+  Activity act6 = Activity.a;
 
   @override
   Widget build(BuildContext context) 
@@ -112,45 +116,70 @@ class _ActivityEditorState extends State<ActivityEditor> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 10,
           children: <Widget>[
             Text('Select Activities:'),
             Row(
               children: [
                 Spacer(),
-                Text('Morning'),
-                Spacer(),
-                Text('Midday'),
-                Spacer(),
-                Text('Afternoon'),
-                Spacer(),
-              ],
-            ),
-            Row(
-              children: [
-                Spacer(),
-                DropdownMenu<Activity>(
-                  initialSelection: Activity.a,
-                  dropdownMenuEntries: Activity.entries, 
-                  onSelected: (object) => morning=object!
+                Column(
+                  spacing: 10,
+                  children: [
+                    Text('First Morning Activity:'),
+                    DropdownMenu<Activity>(
+                      initialSelection: Activity.a,
+                      dropdownMenuEntries: Activity.entries, 
+                      onSelected: (object) => act1=object!
+                    ),
+                    Text('First Afternoon Activity:'),
+                    DropdownMenu<Activity>(
+                      initialSelection: Activity.a,
+                      dropdownMenuEntries: Activity.entries, 
+                      onSelected: (object) => act4=object!
+                    ),
+                  ],
                 ),
                 Spacer(),
-                DropdownMenu<Activity>(
-                  initialSelection: Activity.a,
-                  dropdownMenuEntries: Activity.entries, 
-                  onSelected: (object) => lunch=object!
+                Column(
+                  spacing: 10,
+                  children: [
+                    Text('Second Morning Activity:'),
+                    DropdownMenu<Activity>(
+                      initialSelection: Activity.a,
+                      dropdownMenuEntries: Activity.entries, 
+                      onSelected: (object) => act2=object!
+                    ),
+                    Text('Second Afternoon Activity:'),
+                    DropdownMenu<Activity>(
+                      initialSelection: Activity.a,
+                      dropdownMenuEntries: Activity.entries, 
+                      onSelected: (object) => act5=object!
+                    ),
+                  ],
                 ),
                 Spacer(),
-                DropdownMenu<Activity>(
-                  initialSelection: Activity.a,
-                  dropdownMenuEntries: Activity.entries, 
-                  onSelected: (object) => afternoon=object!
+                Column(
+                  spacing: 10,
+                  children: [
+                    Text('Third Morning Activity:'),
+                    DropdownMenu<Activity>(
+                      initialSelection: Activity.a,
+                      dropdownMenuEntries: Activity.entries, 
+                      onSelected: (object) => act3=object!
+                    ),
+                    Text('Third Afternoon Activity:'),
+                    DropdownMenu<Activity>(
+                      initialSelection: Activity.a,
+                      dropdownMenuEntries: Activity.entries, 
+                      onSelected: (object) => act6=object!
+                    ),
+                  ],
                 ),
                 Spacer(),
               ],
             ),
             ElevatedButton(
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActivityDisplay(title: 'ActivityDisplay (REMOVE THE APPBAR ON THIS SCREEN)', morning: morning, lunch: lunch, afternoon: afternoon,))),
-              // onPressed: () => print('${morning.image}, ${lunch.image}, ${afternoon.image}'),
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActivityDisplay(title: 'ActivityDisplay (REMOVE THE APPBAR ON THIS SCREEN)', act1: act1, act2: act2, act3: act3, act4: act4, act5: act5, act6: act6,))),
               child: Text('Run Selection'))
           ],
         ),
@@ -161,12 +190,15 @@ class _ActivityEditorState extends State<ActivityEditor> {
 }
 
 class ActivityDisplay extends StatefulWidget {
-  const ActivityDisplay({super.key, required this.title, required this.morning, required this.lunch, required this.afternoon});
+  const ActivityDisplay({super.key, required this.title, required this.act1, required this.act2, required this.act3, required this.act4, required this.act5,required this.act6,});
 
   final String title;
-  final Activity morning;
-  final Activity lunch;
-  final Activity afternoon;
+  final Activity act1;
+  final Activity act2;
+  final Activity act3;
+  final Activity act4;
+  final Activity act5;
+  final Activity act6;
 
   @override
   State<ActivityDisplay> createState() => _ActivityDisplayState();
@@ -196,22 +228,22 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
                 Spacer(),
                 Column(
                   children: [
-                    Image.asset(widget.morning.image),
-                    Text(widget.morning.text),
+                    Image.asset(widget.act1.image),
+                    Text(widget.act1.text),
                   ],
                 ),
                 Spacer(),
                 Column(
                   children: [
-                    Image.asset(widget.lunch.image),
-                    Text(widget.lunch.text),
+                    Image.asset(widget.act2.image),
+                    Text(widget.act2.text),
                   ],
                 ),
                 Spacer(),
                 Column(
                   children: [
-                    Image.asset(widget.afternoon.image),
-                    Text(widget.afternoon.text),
+                    Image.asset(widget.act3.image),
+                    Text(widget.act3.text),
                   ],
                 ),
                 Spacer(),
