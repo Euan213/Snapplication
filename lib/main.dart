@@ -69,9 +69,15 @@ class _MyHomePageState extends State<MyHomePage> {
 typedef ActivityEntry = DropdownMenuEntry<Activity>;
 
 enum Activity {
-  a('Option A', 'assets/placeholder.jpg'),
-  b('Option B', 'assets/b.jpg'),
-  c('Option C', 'assets/c.jpg');
+  art('Art', 'assets/art.jpeg'),
+  cooking('Cooking', 'assets/cooking.jpeg'),
+  goo('Goo', 'assets/goo.jpeg'),
+  outdoors('Outdoors', 'assets/outdoors.jpeg'),
+  parachute('Parachute','assets/Parachute.jpeg'),
+  seesaw('Seesaw','assets/seesaw.jpeg'),
+  sports('Sports', 'assets/sports.jpeg'),
+  stories('Stories', 'assets/stories.jpeg'),
+  technology('Technology', 'assets/technology.jpeg');
 
   const Activity(this.text, this.image);
   final String text;
@@ -96,12 +102,12 @@ class ActivityEditor extends StatefulWidget {
 
 class _ActivityEditorState extends State<ActivityEditor> {
 
-  Activity act1 = Activity.a;
-  Activity act2 = Activity.a;
-  Activity act3 = Activity.a;
-  Activity act4 = Activity.a;
-  Activity act5 = Activity.a;
-  Activity act6 = Activity.a;
+  Activity act1 = Activity.art;
+  Activity act2 = Activity.art;
+  Activity act3 = Activity.art;
+  Activity act4 = Activity.art;
+  Activity act5 = Activity.art;
+  Activity act6 = Activity.art;
 
   @override
   Widget build(BuildContext context) 
@@ -127,13 +133,13 @@ class _ActivityEditorState extends State<ActivityEditor> {
                   children: [
                     Text('First Morning Activity:'),
                     DropdownMenu<Activity>(
-                      initialSelection: Activity.a,
+                      initialSelection: Activity.art,
                       dropdownMenuEntries: Activity.entries, 
                       onSelected: (object) => act1=object!
                     ),
                     Text('First Afternoon Activity:'),
                     DropdownMenu<Activity>(
-                      initialSelection: Activity.a,
+                      initialSelection: Activity.art,
                       dropdownMenuEntries: Activity.entries, 
                       onSelected: (object) => act4=object!
                     ),
@@ -145,13 +151,13 @@ class _ActivityEditorState extends State<ActivityEditor> {
                   children: [
                     Text('Second Morning Activity:'),
                     DropdownMenu<Activity>(
-                      initialSelection: Activity.a,
+                      initialSelection: Activity.art,
                       dropdownMenuEntries: Activity.entries, 
                       onSelected: (object) => act2=object!
                     ),
                     Text('Second Afternoon Activity:'),
                     DropdownMenu<Activity>(
-                      initialSelection: Activity.a,
+                      initialSelection: Activity.art,
                       dropdownMenuEntries: Activity.entries, 
                       onSelected: (object) => act5=object!
                     ),
@@ -163,13 +169,13 @@ class _ActivityEditorState extends State<ActivityEditor> {
                   children: [
                     Text('Third Morning Activity:'),
                     DropdownMenu<Activity>(
-                      initialSelection: Activity.a,
+                      initialSelection: Activity.art,
                       dropdownMenuEntries: Activity.entries, 
                       onSelected: (object) => act3=object!
                     ),
                     Text('Third Afternoon Activity:'),
                     DropdownMenu<Activity>(
-                      initialSelection: Activity.a,
+                      initialSelection: Activity.art,
                       dropdownMenuEntries: Activity.entries, 
                       onSelected: (object) => act6=object!
                     ),
