@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 
 void main() {
@@ -67,7 +68,6 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 typedef ActivityEntry = DropdownMenuEntry<Activity>;
-
 enum Activity {
   art('Art', 'assets/art.jpeg'),
   cooking('Cooking', 'assets/cooking.jpeg'),
@@ -90,24 +90,38 @@ enum Activity {
   );
 }
 
+class InformationTruck
+{
+  InformationTruck();
+
+  Activity act1 = Activity.art;
+  Activity act2 = Activity.sports;
+  Activity act3 = Activity.stories;
+  Activity act4 = Activity.outdoors;
+  Activity act5 = Activity.cooking;
+  Activity act6 = Activity.technology;
+
+  String? act1Text; 
+  String? act2Text; 
+  String? act3Text; 
+  String? act4Text; 
+  String? act5Text; 
+  String? act6Text; 
+
+}
+
 class ActivityEditor extends StatefulWidget {
-  ActivityEditor({super.key, required this.title});
+  const ActivityEditor({super.key, required this.title});
 
   final String title;
-  final List<DropdownMenuItem> activities = [];
 
   @override
   State<ActivityEditor> createState() => _ActivityEditorState();
 }
 
-class _ActivityEditorState extends State<ActivityEditor> {
-
-  Activity act1 = Activity.art;
-  Activity act2 = Activity.art;
-  Activity act3 = Activity.art;
-  Activity act4 = Activity.art;
-  Activity act5 = Activity.art;
-  Activity act6 = Activity.art;
+class _ActivityEditorState extends State<ActivityEditor> 
+{
+  InformationTruck truck = InformationTruck();
 
   @override
   Widget build(BuildContext context) 
@@ -135,13 +149,45 @@ class _ActivityEditorState extends State<ActivityEditor> {
                     DropdownMenu<Activity>(
                       initialSelection: Activity.art,
                       dropdownMenuEntries: Activity.entries, 
-                      onSelected: (object) => act1=object!
+                      onSelected: (object) => 
+                      {
+                        truck.act1=object!,
+                        truck.act1Text = null,
+                      }
+                    ),
+                    SizedBox(
+                      width: 100,
+                      child: TextField( 
+                        controller: TextEditingController(),
+                        decoration: InputDecoration(
+                          counterText: '',
+                          label: Text('Override Text'),
+                        ),
+                        onSubmitted: (String value)
+                        {
+                          truck.act1Text = value;
+                        },
+                      ),
                     ),
                     Text('First Afternoon Activity:'),
                     DropdownMenu<Activity>(
-                      initialSelection: Activity.art,
+                      initialSelection: Activity.outdoors,
                       dropdownMenuEntries: Activity.entries, 
-                      onSelected: (object) => act4=object!
+                      onSelected: (object) => truck.act4=object!
+                    ),
+                    SizedBox(
+                      width: 100,
+                      child: TextField( 
+                        controller: TextEditingController(),
+                        decoration: InputDecoration(
+                          counterText: '',
+                          label: Text('Override Text'),
+                        ),
+                        onSubmitted: (String value)
+                        {
+                          truck.act4Text = value;
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -151,15 +197,43 @@ class _ActivityEditorState extends State<ActivityEditor> {
                   children: [
                     Text('Second Morning Activity:'),
                     DropdownMenu<Activity>(
-                      initialSelection: Activity.art,
+                      initialSelection: Activity.sports,
                       dropdownMenuEntries: Activity.entries, 
-                      onSelected: (object) => act2=object!
+                      onSelected: (object) => truck.act2=object!
+                    ),
+                    SizedBox(
+                      width: 100,
+                      child: TextField( 
+                        controller: TextEditingController(),
+                        decoration: InputDecoration(
+                          counterText: '',
+                          label: Text('Override Text'),
+                        ),
+                        onSubmitted: (String value)
+                        {
+                          truck.act2Text = value;
+                        },
+                      ),
                     ),
                     Text('Second Afternoon Activity:'),
                     DropdownMenu<Activity>(
-                      initialSelection: Activity.art,
+                      initialSelection: Activity.cooking,
                       dropdownMenuEntries: Activity.entries, 
-                      onSelected: (object) => act5=object!
+                      onSelected: (object) => truck.act5=object!
+                    ),
+                    SizedBox(
+                      width: 100,
+                      child: TextField( 
+                        controller: TextEditingController(),
+                        decoration: InputDecoration(
+                          counterText: '',
+                          label: Text('Override Text'),
+                        ),
+                        onSubmitted: (String value)
+                        {
+                          truck.act5Text = value;
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -169,15 +243,43 @@ class _ActivityEditorState extends State<ActivityEditor> {
                   children: [
                     Text('Third Morning Activity:'),
                     DropdownMenu<Activity>(
-                      initialSelection: Activity.art,
+                      initialSelection: Activity.stories,
                       dropdownMenuEntries: Activity.entries, 
-                      onSelected: (object) => act3=object!
+                      onSelected: (object) => truck.act3=object!
+                    ),
+                    SizedBox(
+                      width: 100,
+                      child: TextField( 
+                        controller: TextEditingController(),
+                        decoration: InputDecoration(
+                          counterText: '',
+                          label: Text('Override Text'),
+                        ),
+                        onSubmitted: (String value)
+                        {
+                          truck.act3Text = value;
+                        },
+                      ),
                     ),
                     Text('Third Afternoon Activity:'),
                     DropdownMenu<Activity>(
-                      initialSelection: Activity.art,
+                      initialSelection: Activity.technology,
                       dropdownMenuEntries: Activity.entries, 
-                      onSelected: (object) => act6=object!
+                      onSelected: (object) => truck.act6=object!
+                    ),
+                    SizedBox(
+                      width: 100,
+                      child: TextField( 
+                        controller: TextEditingController(),
+                        decoration: InputDecoration(
+                          counterText: '',
+                          label: Text('Override Text'),
+                        ),
+                        onSubmitted: (String value)
+                        {
+                          truck.act6Text = value;
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -185,7 +287,7 @@ class _ActivityEditorState extends State<ActivityEditor> {
               ],
             ),
             ElevatedButton(
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActivityDisplay(title: 'ActivityDisplay (REMOVE THE APPBAR ON THIS SCREEN)', act1: act1, act2: act2, act3: act3, act4: act4, act5: act5, act6: act6,))),
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActivityDisplay(title: 'ActivityDisplay (REMOVE THE APPBAR ON THIS SCREEN)', truck: truck,))),
               child: Text('Run Selection'))
           ],
         ),
@@ -196,23 +298,17 @@ class _ActivityEditorState extends State<ActivityEditor> {
 }
 
 class ActivityDisplay extends StatefulWidget {
-  const ActivityDisplay({super.key, required this.title, required this.act1, required this.act2, required this.act3, required this.act4, required this.act5,required this.act6,});
+  const ActivityDisplay({super.key, required this.title, required this.truck,});
 
   final String title;
-  final Activity act1;
-  final Activity act2;
-  final Activity act3;
-  final Activity act4;
-  final Activity act5;
-  final Activity act6;
+  final InformationTruck truck;
+
 
   @override
   State<ActivityDisplay> createState() => _ActivityDisplayState();
 }
 
 class _ActivityDisplayState extends State<ActivityDisplay> {
-
-
 
   @override
   Widget build(BuildContext context) 
@@ -234,22 +330,22 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
                 Spacer(),
                 Column(
                   children: [
-                    Image.asset(widget.act1.image),
-                    Text(widget.act1.text),
+                    Image.asset(widget.truck.act1.image),
+                    Text(widget.truck.act1Text==null? widget.truck.act1.text : widget.truck.act1Text!),
                   ],
                 ),
                 Spacer(),
                 Column(
                   children: [
-                    Image.asset(widget.act2.image),
-                    Text(widget.act2.text),
+                    Image.asset(widget.truck.act2.image),
+                    Text(widget.truck.act2.text),
                   ],
                 ),
                 Spacer(),
                 Column(
                   children: [
-                    Image.asset(widget.act3.image),
-                    Text(widget.act3.text),
+                    Image.asset(widget.truck.act3.image),
+                    Text(widget.truck.act3.text),
                   ],
                 ),
                 Spacer(),
