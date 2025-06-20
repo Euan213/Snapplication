@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -122,7 +120,7 @@ class ActivityEditor extends StatefulWidget {
 
 class ActivityField extends StatelessWidget
 {
-  ActivityField({required this.id, required this.truck, this.initial=Activity.art});
+  const ActivityField({super.key, required this.id, required this.truck, this.initial=Activity.art});
 
   final int id;
   final InformationTruck truck;
@@ -285,14 +283,35 @@ class ActivityDisplay extends StatefulWidget {
 
 class _ActivityDisplayState extends State<ActivityDisplay> {
 
+  DateTime now = DateTime.now();
+
+  get isAfternoon
+  {
+    return now.hour>=12 ? true : false;
+  }
+
   @override
   Widget build(BuildContext context) 
   {
-    DateTime now = DateTime.now();
     String convertedDateTime = "${now.weekday==1? "Monday ": now.weekday==2? "Tuesday ": now.weekday==3? "Wednesday ": now.weekday==4? "Thursday ": now.weekday==5? "Friday ":"Its the weekend why are you here? "
     }${now.day.toString()}/${now.month.toString().padLeft(2,'0')}/${now.year.toString().padLeft(2,'0')}";
 
-    // Timer t = Timer(Duration(seconds: 5), (){print("time");});
+    if (!isAfternoon)
+    {
+      DateTime noon = DateTime(now.year,  now.month, now.day, 12);
+      Duration tillNoon = now.difference(noon);
+
+      Timer(Duration(seconds: tillNoon.inSeconds), (){
+        if (mounted)
+        {
+          setState(() {
+            now = DateTime.now();
+            isAfternoon;
+          });
+        }
+      });
+    }
+    
 
     return Scaffold(
       appBar: AppBar(title: Text(widget.title),),
@@ -303,7 +322,7 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
             Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+              children: !isAfternoon? <Widget>[
                 Spacer(),
                 Column(
                   children: [
@@ -326,7 +345,32 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
                   ],
                 ),
                 Spacer(),
+              ]
+              : <Widget>[
+                Spacer(),
+                Column(
+                  children: [
+                    Image.asset(widget.truck.act4.image),
+                    Text(widget.truck.act4Text==null? widget.truck.act4.text : widget.truck.act4Text!),
+                  ],
+                ),
+                Spacer(),
+                Column(
+                  children: [
+                    Image.asset(widget.truck.act5.image),
+                    Text(widget.truck.act5Text==null? widget.truck.act5.text : widget.truck.act5Text!),
+                  ],
+                ),
+                Spacer(),
+                Column(
+                  children: [
+                    Image.asset(widget.truck.act6.image),
+                    Text(widget.truck.act6Text==null? widget.truck.act6.text : widget.truck.act6Text!),
+                  ],
+                ),
+                Spacer(),
               ],
+
             ),
             Spacer(),
           ],
