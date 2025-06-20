@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
@@ -119,6 +120,92 @@ class ActivityEditor extends StatefulWidget {
   State<ActivityEditor> createState() => _ActivityEditorState();
 }
 
+class ActivityField extends StatelessWidget
+{
+  ActivityField({required this.id, required this.truck, this.initial=Activity.art});
+
+  final int id;
+  final InformationTruck truck;
+  final Activity initial;
+
+  void dropdownUpdateTruck(Activity selected)
+  {
+    id==1?
+    {
+      truck.act1=selected,
+      truck.act1Text = null,
+    }:id==2?
+    {
+      truck.act2=selected,
+      truck.act2Text = null,
+    }:id==3?
+    {
+      truck.act3=selected,
+      truck.act3Text = null,
+    }:id==4?
+    {
+      truck.act4=selected,
+      truck.act4Text = null,
+    }:id==5?
+    {
+      truck.act5=selected,
+      truck.act5Text = null,
+    }:
+    {
+      truck.act6=selected,
+      truck.act6Text = null,
+    };
+  }
+
+  void textfieldUpdateTruck (String val)
+  {
+    id==1?
+    {
+      truck.act1Text = val
+    }:id==2?
+    {
+      truck.act2Text = val
+    }:id==3?
+    {
+      truck.act3Text = val
+    }:id==4?
+    {
+      truck.act4Text = val
+    }:id==5?
+    {
+      truck.act5Text = val
+    }:
+    {
+      truck.act6Text = val
+    };
+  }
+
+  @override
+  Widget build(BuildContext context)
+  {
+    return Column(
+      children: [
+        DropdownMenu<Activity>(
+          initialSelection: initial,
+          dropdownMenuEntries: Activity.entries, 
+          onSelected: (selected) => dropdownUpdateTruck(selected!)
+        ),
+        SizedBox(
+          width: 100,
+          child: TextField( 
+            controller: TextEditingController(),
+            decoration: InputDecoration(
+              counterText: '',
+              label: Text('Override Text'),
+            ),
+            onSubmitted: (value) => textfieldUpdateTruck(value),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class _ActivityEditorState extends State<ActivityEditor> 
 {
   InformationTruck truck = InformationTruck();
@@ -146,49 +233,9 @@ class _ActivityEditorState extends State<ActivityEditor>
                   spacing: 10,
                   children: [
                     Text('First Morning Activity:'),
-                    DropdownMenu<Activity>(
-                      initialSelection: Activity.art,
-                      dropdownMenuEntries: Activity.entries, 
-                      onSelected: (object) => 
-                      {
-                        truck.act1=object!,
-                        truck.act1Text = null,
-                      }
-                    ),
-                    SizedBox(
-                      width: 100,
-                      child: TextField( 
-                        controller: TextEditingController(),
-                        decoration: InputDecoration(
-                          counterText: '',
-                          label: Text('Override Text'),
-                        ),
-                        onSubmitted: (String value)
-                        {
-                          truck.act1Text = value;
-                        },
-                      ),
-                    ),
+                    ActivityField(id: 1, truck: truck, initial: Activity.art,),
                     Text('First Afternoon Activity:'),
-                    DropdownMenu<Activity>(
-                      initialSelection: Activity.outdoors,
-                      dropdownMenuEntries: Activity.entries, 
-                      onSelected: (object) => truck.act4=object!
-                    ),
-                    SizedBox(
-                      width: 100,
-                      child: TextField( 
-                        controller: TextEditingController(),
-                        decoration: InputDecoration(
-                          counterText: '',
-                          label: Text('Override Text'),
-                        ),
-                        onSubmitted: (String value)
-                        {
-                          truck.act4Text = value;
-                        },
-                      ),
-                    ),
+                    ActivityField(id: 4, truck: truck, initial: Activity.outdoors,),
                   ],
                 ),
                 Spacer(),
@@ -196,45 +243,9 @@ class _ActivityEditorState extends State<ActivityEditor>
                   spacing: 10,
                   children: [
                     Text('Second Morning Activity:'),
-                    DropdownMenu<Activity>(
-                      initialSelection: Activity.sports,
-                      dropdownMenuEntries: Activity.entries, 
-                      onSelected: (object) => truck.act2=object!
-                    ),
-                    SizedBox(
-                      width: 100,
-                      child: TextField( 
-                        controller: TextEditingController(),
-                        decoration: InputDecoration(
-                          counterText: '',
-                          label: Text('Override Text'),
-                        ),
-                        onSubmitted: (String value)
-                        {
-                          truck.act2Text = value;
-                        },
-                      ),
-                    ),
+                    ActivityField(id: 2, truck: truck, initial: Activity.sports,),
                     Text('Second Afternoon Activity:'),
-                    DropdownMenu<Activity>(
-                      initialSelection: Activity.cooking,
-                      dropdownMenuEntries: Activity.entries, 
-                      onSelected: (object) => truck.act5=object!
-                    ),
-                    SizedBox(
-                      width: 100,
-                      child: TextField( 
-                        controller: TextEditingController(),
-                        decoration: InputDecoration(
-                          counterText: '',
-                          label: Text('Override Text'),
-                        ),
-                        onSubmitted: (String value)
-                        {
-                          truck.act5Text = value;
-                        },
-                      ),
-                    ),
+                    ActivityField(id: 5, truck: truck, initial: Activity.cooking,),
                   ],
                 ),
                 Spacer(),
@@ -242,45 +253,9 @@ class _ActivityEditorState extends State<ActivityEditor>
                   spacing: 10,
                   children: [
                     Text('Third Morning Activity:'),
-                    DropdownMenu<Activity>(
-                      initialSelection: Activity.stories,
-                      dropdownMenuEntries: Activity.entries, 
-                      onSelected: (object) => truck.act3=object!
-                    ),
-                    SizedBox(
-                      width: 100,
-                      child: TextField( 
-                        controller: TextEditingController(),
-                        decoration: InputDecoration(
-                          counterText: '',
-                          label: Text('Override Text'),
-                        ),
-                        onSubmitted: (String value)
-                        {
-                          truck.act3Text = value;
-                        },
-                      ),
-                    ),
+                    ActivityField(id: 3, truck: truck, initial: Activity.stories,),
                     Text('Third Afternoon Activity:'),
-                    DropdownMenu<Activity>(
-                      initialSelection: Activity.technology,
-                      dropdownMenuEntries: Activity.entries, 
-                      onSelected: (object) => truck.act6=object!
-                    ),
-                    SizedBox(
-                      width: 100,
-                      child: TextField( 
-                        controller: TextEditingController(),
-                        decoration: InputDecoration(
-                          counterText: '',
-                          label: Text('Override Text'),
-                        ),
-                        onSubmitted: (String value)
-                        {
-                          truck.act6Text = value;
-                        },
-                      ),
-                    ),
+                    ActivityField(id: 6, truck: truck, initial: Activity.technology,),
                   ],
                 ),
                 Spacer(),
@@ -317,6 +292,8 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
     String convertedDateTime = "${now.weekday==1? "Monday ": now.weekday==2? "Tuesday ": now.weekday==3? "Wednesday ": now.weekday==4? "Thursday ": now.weekday==5? "Friday ":"Its the weekend why are you here? "
     }${now.day.toString()}/${now.month.toString().padLeft(2,'0')}/${now.year.toString().padLeft(2,'0')}";
 
+    // Timer t = Timer(Duration(seconds: 5), (){print("time");});
+
     return Scaffold(
       appBar: AppBar(title: Text(widget.title),),
       body: Center(
@@ -338,14 +315,14 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
                 Column(
                   children: [
                     Image.asset(widget.truck.act2.image),
-                    Text(widget.truck.act2.text),
+                    Text(widget.truck.act2Text==null? widget.truck.act2.text : widget.truck.act2Text!),
                   ],
                 ),
                 Spacer(),
                 Column(
                   children: [
                     Image.asset(widget.truck.act3.image),
-                    Text(widget.truck.act3.text),
+                    Text(widget.truck.act3Text==null? widget.truck.act3.text : widget.truck.act3Text!),
                   ],
                 ),
                 Spacer(),
@@ -354,9 +331,7 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
             Spacer(),
           ],
         ),
-
       ),
-
     );
   }
 }
