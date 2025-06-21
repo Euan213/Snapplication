@@ -332,7 +332,7 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
                       child: Image.asset(widget.truck.act1.image),
                     ),
                     Text(widget.truck.act1Text==null? widget.truck.act1.text : widget.truck.act1Text!),
-                  ]
+                  ],
                 ),
                 Spacer(),
                 Column(
@@ -350,7 +350,7 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
                   children: [
                     SizedBox(
                       width: 480,
-                      child:                     Image.asset(widget.truck.act3.image),
+                      child: Image.asset(widget.truck.act3.image),
                     ),
                     Text(widget.truck.act3Text==null? widget.truck.act3.text : widget.truck.act3Text!),
                   ],
@@ -363,10 +363,8 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
                   children: [
                     SizedBox(
                       width: 480,
-                      //height: 270,
                       child: Image.asset(widget.truck.act4.image),
-                      
-                    ),                    
+                    ),
                     Text(widget.truck.act4Text==null? widget.truck.act4.text : widget.truck.act4Text!),
                   ],
                 ),
