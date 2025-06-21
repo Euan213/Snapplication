@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:collection';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 
@@ -281,13 +282,15 @@ class ActivityDisplay extends StatefulWidget {
   State<ActivityDisplay> createState() => _ActivityDisplayState();
 }
 
+enum TimeOfDay{morning, lunch, afternoon, hometime}
+
 class _ActivityDisplayState extends State<ActivityDisplay> {
 
   DateTime now = DateTime.now();
 
-  get isAfternoon
+  TimeOfDay get timeOfDay
   {
-    return now.hour>=12 ? true : false;
+    return now.hour<12 ? TimeOfDay.morning : now.hour==12? TimeOfDay.lunch : now.hour<15? TimeOfDay.afternoon : TimeOfDay.hometime;
   }
 
   @override
@@ -296,33 +299,41 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
     String convertedDateTime = "${now.weekday==1? "Monday ": now.weekday==2? "Tuesday ": now.weekday==3? "Wednesday ": now.weekday==4? "Thursday ": now.weekday==5? "Friday ":"Its the weekend why are you here? "
     }${now.day.toString()}/${now.month.toString().padLeft(2,'0')}/${now.year.toString().padLeft(2,'0')}";
 
-    if (!isAfternoon)
+    if (timeOfDay != TimeOfDay.hometime)
     {
-      DateTime noon = DateTime(now.year,  now.month, now.day, 12);
-      Duration tillNoon = now.difference(noon);
+      int endTime = timeOfDay==TimeOfDay.morning? 12 : timeOfDay==TimeOfDay.lunch? 13 : 15;
+      DateTime nextTime = DateTime(now.year,  now.month, now.day, endTime);
+      Duration tillNext = now.difference(nextTime);
 
-      Timer(Duration(seconds: tillNoon.inSeconds), (){
+      Timer(Duration(seconds: tillNext.inSeconds), (){
         if (mounted)
         {
           setState(() {
             now = DateTime.now();
-            isAfternoon;
+            timeOfDay;
           });
         }
       });
     }
     
+    int lunchScreen;
 
     return Scaffold(
       appBar: AppBar(title: Text(widget.title),),
       body: Center(
         child: Column(
           children: [
-            Text(convertedDateTime),
+            Text(
+              convertedDateTime,
+              style: TextStyle(
+                fontSize: 28, 
+                color: Theme.of(context).colorScheme.secondary
+                ),
+              ),
             Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: !isAfternoon? <Widget>[
+              children: timeOfDay==TimeOfDay.morning? <Widget>[
                 Spacer(),
                 Column(
                   children:[
@@ -357,7 +368,8 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
                 ),
                 Spacer(),
               ]
-              : <Widget>[
+              : timeOfDay==TimeOfDay.lunch? <Widget>[Text("LUNCH")]
+              : timeOfDay==TimeOfDay.afternoon? <Widget>[
                 Spacer(),
                 Column(
                   children: [
@@ -389,8 +401,8 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
                   ],
                 ),
                 Spacer(),
-              ],
-
+              ]
+              : <Widget>[Text("HomeTime")],
             ),
             Spacer(),
           ],
