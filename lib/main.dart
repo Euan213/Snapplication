@@ -14,9 +14,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
 
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromARGB(255, 0, 176, 0),
+          primary: const Color.fromARGB(255, 0, 176, 0),
+          onPrimary: Colors.white,
+          ),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -41,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
 
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
 
         title: Text(widget.title),
       ),
@@ -214,7 +219,7 @@ class _ActivityEditorState extends State<ActivityEditor>
     return Scaffold(
       appBar: AppBar(
 
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
 
         title: Text(widget.title),
       ),
@@ -260,7 +265,7 @@ class _ActivityEditorState extends State<ActivityEditor>
               ],
             ),
             ElevatedButton(
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActivityDisplay(title: 'ActivityDisplay (REMOVE THE APPBAR ON THIS SCREEN)', truck: truck,))),
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActivityDisplay(title: 'ActivityDisplay', truck: truck,))),
               child: Text('Run Selection'))
           ],
         ),
@@ -314,7 +319,10 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
     
 
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title),),
+      appBar: AppBar(title: Text(widget.title, style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 45),),
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              iconTheme: IconThemeData(color: Theme.of(context).colorScheme.primary),
+),
       body: Center(
         child: Column(
           children: [
