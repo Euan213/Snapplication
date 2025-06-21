@@ -68,15 +68,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
 typedef ActivityEntry = DropdownMenuEntry<Activity>;
 enum Activity {
-  art('Art', 'assets/art.jpeg'),
-  cooking('Cooking', 'assets/cooking.jpeg'),
-  goo('Goo', 'assets/goo.jpeg'),
-  outdoors('Outdoors', 'assets/outdoors.jpeg'),
-  parachute('Parachute','assets/Parachute.jpeg'),
-  seesaw('Seesaw','assets/seesaw.jpeg'),
-  sports('Sports', 'assets/sports.jpeg'),
-  stories('Stories', 'assets/stories.jpeg'),
-  technology('Technology', 'assets/technology.jpeg');
+  art('Art', 'assets/art.png'),
+  cooking('Cooking', 'assets/cooking.png'),
+  goo('Goo', 'assets/goo.png'),
+  outdoors('Outdoors', 'assets/outdoors.png'),
+  parachute('Parachute','assets/Parachute.png'),
+  seesaw('Seesaw','assets/seesaw.png'),
+  sports('Sports', 'assets/sports.png'),
+  stories('Stories', 'assets/stories.png'),
+  technology('Technology', 'assets/technology.png');
 
   const Activity(this.text, this.image);
   final String text;
@@ -325,22 +325,33 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
               children: !isAfternoon? <Widget>[
                 Spacer(),
                 Column(
-                  children: [
-                    Image.asset(widget.truck.act1.image),
+                  children:[
+                    SizedBox(
+                      width: 480,
+                      height: 270,
+                      child: Image.asset(widget.truck.act1.image),
+                    ),
                     Text(widget.truck.act1Text==null? widget.truck.act1.text : widget.truck.act1Text!),
-                  ],
+                  ]
                 ),
                 Spacer(),
                 Column(
                   children: [
-                    Image.asset(widget.truck.act2.image),
+                    SizedBox(
+                      width: 480,
+                      height: 270,
+                      child: Image.asset(widget.truck.act2.image),
+                    ),
                     Text(widget.truck.act2Text==null? widget.truck.act2.text : widget.truck.act2Text!),
                   ],
                 ),
                 Spacer(),
                 Column(
                   children: [
-                    Image.asset(widget.truck.act3.image),
+                    SizedBox(
+                      width: 480,
+                      child:                     Image.asset(widget.truck.act3.image),
+                    ),
                     Text(widget.truck.act3Text==null? widget.truck.act3.text : widget.truck.act3Text!),
                   ],
                 ),
@@ -350,21 +361,32 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
                 Spacer(),
                 Column(
                   children: [
-                    Image.asset(widget.truck.act4.image),
+                    SizedBox(
+                      width: 480,
+                      //height: 270,
+                      child: Image.asset(widget.truck.act4.image),
+                      
+                    ),                    
                     Text(widget.truck.act4Text==null? widget.truck.act4.text : widget.truck.act4Text!),
                   ],
                 ),
                 Spacer(),
                 Column(
                   children: [
-                    Image.asset(widget.truck.act5.image),
+                    SizedBox(
+                      width: 480,
+                      child: Image.asset(widget.truck.act5.image),
+                    ),
                     Text(widget.truck.act5Text==null? widget.truck.act5.text : widget.truck.act5Text!),
                   ],
                 ),
                 Spacer(),
                 Column(
                   children: [
-                    Image.asset(widget.truck.act6.image),
+                    SizedBox(
+                      width: 480,
+                      child: Image.asset(widget.truck.act6.image),
+                    ),
                     Text(widget.truck.act6Text==null? widget.truck.act6.text : widget.truck.act6Text!),
                   ],
                 ),
