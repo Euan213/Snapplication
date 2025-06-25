@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
           children: [
             Image.asset('assets/snap.png'),
-            Text("SNAP!", style: TextStyle(fontSize: 150),),
+            Text("SNAP!", style: TextStyle(fontSize: 95),),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -306,6 +306,7 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
 
   TimeOfDay get timeOfDay
   {
+    return TimeOfDay.lunch;
     return now.hour<12 ? TimeOfDay.morning : now.hour==12? TimeOfDay.lunch : now.hour<15? TimeOfDay.afternoon : TimeOfDay.hometime;
   }
 
@@ -361,7 +362,7 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
                 Column(
                   children:[
                     SizedBox(
-                      width: 480,
+                      width: MediaQuery.sizeOf(context).width/4,
                       height: 270,
                       child: Image.asset(widget.truck.act1.image),
                     ),
@@ -372,7 +373,7 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
                 Column(
                   children: [
                     SizedBox(
-                      width: 480,
+                      width: MediaQuery.sizeOf(context).width/4,
                       height: 270,
                       child: Image.asset(widget.truck.act2.image),
                     ),
@@ -383,7 +384,7 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
                 Column(
                   children: [
                     SizedBox(
-                      width: 480,
+                      width: MediaQuery.sizeOf(context).width/4,
                       child: Image.asset(widget.truck.act3.image),
                     ),
                     Text(widget.truck.act3Text==null? widget.truck.act3.text : widget.truck.act3Text!),
@@ -392,16 +393,30 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
                 Spacer(),
               ]
               : timeOfDay==TimeOfDay.lunch? <Widget>[
-                Text("LUNCH"),
-                Image.asset('asset/lunch.png')
-              ]
+                Spacer(),
+                SizedBox(
+                  width: MediaQuery.sizeOf(context).width/5,
+                  child: Image.asset('assets/lunch.png'),
+                ),
+                Spacer(),
+                Text(
+                  "Lunch Time!",
+                  style: TextStyle(fontSize: 40),
+                ),
+                Spacer(),
+                SizedBox(
+                  width: MediaQuery.sizeOf(context).width/5,
+                  child: Image.asset('assets/lunch.png'),
+                ),
+                Spacer(),
+                ]
 
               : timeOfDay==TimeOfDay.afternoon? <Widget>[
                 Spacer(),
                 Column(
                   children: [
                     SizedBox(
-                      width: 480,
+                      width: MediaQuery.sizeOf(context).width/4,
                       child: Image.asset(widget.truck.act4.image),
                     ),
                     Text(widget.truck.act4Text==null? widget.truck.act4.text : widget.truck.act4Text!),
@@ -411,7 +426,7 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
                 Column(
                   children: [
                     SizedBox(
-                      width: 480,
+                      width: MediaQuery.sizeOf(context).width/4,
                       child: Image.asset(widget.truck.act5.image),
                     ),
                     Text(widget.truck.act5Text==null? widget.truck.act5.text : widget.truck.act5Text!),
@@ -421,7 +436,7 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
                 Column(
                   children: [
                     SizedBox(
-                      width: 480,
+                      width: MediaQuery.sizeOf(context).width/4,
                       child: Image.asset(widget.truck.act6.image),
                     ),
                     Text(widget.truck.act6Text==null? widget.truck.act6.text : widget.truck.act6Text!),
