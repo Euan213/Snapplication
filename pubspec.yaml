@@ -88,3 +88,9 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+  fonts:
+    - family: ComicSans
+      fonts:
+        - asset: assets/fonts/comicsans.ttf
+        - asset: assets/fonts/comicsansbold.ttf
+          weight: 700

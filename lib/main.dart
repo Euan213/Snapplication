@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-
+        fontFamily: 'ComicSans',
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color.fromARGB(255, 0, 176, 0),
           primary: const Color.fromARGB(255, 0, 176, 0),
@@ -266,7 +266,7 @@ class _ActivityEditorState extends State<ActivityEditor>
               ],
             ),
             ElevatedButton(
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActivityDisplay(title: 'ActivityDisplay', truck: truck,))),
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActivityDisplay(title: 'Activities', truck: truck,))),
               child: Text('Run Selection'))
           ],
         ),
@@ -301,8 +301,8 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
   @override
   Widget build(BuildContext context) 
   {
-    String convertedDateTime = "${now.weekday==1? "Monday ": now.weekday==2? "Tuesday ": now.weekday==3? "Wednesday ": now.weekday==4? "Thursday ": now.weekday==5? "Friday ":"Its the weekend why are you here? "
-    }${now.day.toString()}/${now.month.toString().padLeft(2,'0')}/${now.year.toString().padLeft(2,'0')}";
+    String convertedDateTime = "${now.weekday==1? "Monday": now.weekday==2? "Tuesday": now.weekday==3? "Wednesday": now.weekday==4? "Thursday": now.weekday==5? "Friday":"Its the weekend why are you here?"
+    }, ${now.day.toString()}/${now.month.toString().padLeft(2,'0')}/${now.year.toString().padLeft(2,'0')}";
 
     if (timeOfDay != TimeOfDay.hometime)
     {
@@ -324,7 +324,11 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
     int lunchScreen;
 
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title, style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 45),),
+      appBar: AppBar(title: Text(
+                widget.title, 
+                style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 45),
+              ),
+              toolbarHeight: 100,
               backgroundColor: Theme.of(context).colorScheme.primary,
               iconTheme: IconThemeData(color: Theme.of(context).colorScheme.primary),
 ),
@@ -410,7 +414,18 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
                 ),
                 Spacer(),
               ]
-              : <Widget>[Text("HomeTime")],
+              : <Widget>[
+                Column(
+                  children: [
+                    Text("image of home"),
+                    Text(
+                      "It's hometime! Goodbye everyone!", 
+                      style: TextStyle(fontSize: 40),
+                    ),
+                  ],
+                
+                ),
+              ],
             ),
             Spacer(),
           ],
