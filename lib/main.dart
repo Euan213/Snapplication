@@ -465,12 +465,12 @@ class _RoomsState extends State<Rooms> {
   Widget build(BuildContext context) 
   {
     return Scaffold(
-      appBar: AppBar(
+      // appBar: AppBar(
 
-        backgroundColor: Theme.of(context).colorScheme.primary,
+      //   backgroundColor: Theme.of(context).colorScheme.primary,
 
-        title: Text("Pick A Room!"),
-      ),
+      //   title: Text("Pick A Room!"),
+      // ),
       body: Center(
         child: Stack(
           children: [ 
