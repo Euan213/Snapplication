@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:collection';
-import 'dart:math';
+//import 'dart:math';
 
 import 'package:flutter/material.dart';
 
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           ),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'SNAP App'),
     );
   }
 }
@@ -51,19 +51,29 @@ class _MyHomePageState extends State<MyHomePage> {
 
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActivityEditor(title: 'Editor'))),
-              child: Text('Activity Editor'),
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => Rooms(title: 'Rooms'))),
-              child: Text('Rooms'),
-            ),
 
+      body: Center(
+        child:
+        Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+
+          children: [
+            Image.asset('assets/snap.png'),
+            Text("SNAP!", style: TextStyle(fontSize: 150),),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                ElevatedButton(
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActivityEditor(title: 'Editor'))),
+                  child: Text('Activity Editor'),
+                ),
+                ElevatedButton(
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => Rooms(title: 'Rooms'))),
+                  child: Text('Rooms'),
+                ),
+            
+              ],
+            ),
           ],
         ),
       ),
@@ -82,7 +92,8 @@ enum Activity {
   seesaw('Seesaw','assets/seesaw.png'),
   sports('Sports', 'assets/sports.png'),
   stories('Stories', 'assets/stories.png'),
-  technology('Technology', 'assets/technology.png');
+  technology('Technology', 'assets/technology.png'),
+  sensory('Sensory', 'assets/sensory.png');
 
   const Activity(this.text, this.image);
   final String text;
@@ -321,7 +332,7 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
       });
     }
     
-    int lunchScreen;
+    //int lunchScreen;
 
     return Scaffold(
       appBar: AppBar(title: Text(
@@ -380,7 +391,11 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
                 ),
                 Spacer(),
               ]
-              : timeOfDay==TimeOfDay.lunch? <Widget>[Text("LUNCH")]
+              : timeOfDay==TimeOfDay.lunch? <Widget>[
+                Text("LUNCH"),
+                Image.asset('asset/lunch.png')
+              ]
+
               : timeOfDay==TimeOfDay.afternoon? <Widget>[
                 Spacer(),
                 Column(
@@ -417,7 +432,7 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
               : <Widget>[
                 Column(
                   children: [
-                    Text("image of home"),
+                    Image.asset('assets/home.png'),
                     Text(
                       "It's hometime! Goodbye everyone!", 
                       style: TextStyle(fontSize: 40),
@@ -452,19 +467,50 @@ class _RoomsState extends State<Rooms> {
     return Scaffold(
       appBar: AppBar(
 
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
 
-        title: Text(widget.title),
+        title: Text("Pick A Room!"),
       ),
       body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('Rooms screen'),
-          ],
+        child: Stack(
+          children: [ 
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Column(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.sizeOf(context).width/2,
+                      child: Image.asset('assets/rooms/welcome.jpg'),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.sizeOf(context).width/2,
+                      child: Image.asset('assets/rooms/gym.jpg'),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.sizeOf(context).width/2,
+                      child: Image.asset('assets/rooms/quiet.jpg')
+                      ),
+                    SizedBox(
+                      width: MediaQuery.sizeOf(context).width/2,
+                      child: Image.asset('assets/rooms/dining.jpg')
+                      ),
+                  ],
+                ),
+              ],
+            ),
+            Center(child: SizedBox(
+              width: MediaQuery.sizeOf(context).width/3,
+              child: Image.asset('assets/rooms/sensory.jpg')
+              )
+              )
+          ]
         ),
       ),
-
     );
   }
 }
