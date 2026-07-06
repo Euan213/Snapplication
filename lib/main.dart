@@ -3,6 +3,8 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 
+import 'package:one_clock/one_clock.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -339,13 +341,23 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
       body: Center(
         child: Column(
           children: [
-            Text(
-              convertedDateTime,
-              style: TextStyle(
-                fontSize: 28, 
-                color: Theme.of(context).colorScheme.secondary
+            Row(
+              children: [
+                Text(
+                  convertedDateTime,
+                  style: TextStyle(
+                    fontSize: 28, 
+                    color: Theme.of(context).colorScheme.secondary
+                  ),
                 ),
-              ),
+                Spacer(),
+                DigitalClock(
+                  isLive: true,
+                  showSeconds: false,
+                  digitalClockTextColor: Theme.of(context).colorScheme.secondary
+                ),
+              ]
+            ),
             Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
