@@ -341,22 +341,29 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
       body: Center(
         child: Column(
           children: [
-            Row(
-              children: [
-                Text(
-                  convertedDateTime,
-                  style: TextStyle(
-                    fontSize: 28, 
-                    color: Theme.of(context).colorScheme.secondary
+            Container(
+              padding: EdgeInsets.fromLTRB(40,0,50,0),
+              child: Row(
+                children: [
+                  Text(
+                    convertedDateTime,
+                    style: TextStyle(
+                      fontSize: 28, 
+                      color: Theme.of(context).colorScheme.secondary
+                    ),
                   ),
-                ),
-                Spacer(),
-                DigitalClock(
-                  isLive: true,
-                  showSeconds: false,
-                  digitalClockTextColor: Theme.of(context).colorScheme.secondary
-                ),
-              ]
+                  Spacer(),
+                  DigitalClock(
+                    textStyle: TextStyle(
+                      fontFamily: 'ComicSans',
+                      fontSize: 28,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                    isLive: true,
+                    showSeconds: false,                    
+                  ),
+                ]
+              ),
             ),
             Spacer(),
             Row(
