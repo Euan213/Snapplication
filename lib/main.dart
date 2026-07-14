@@ -504,11 +504,11 @@ class _RoomsState extends State<Rooms> {
                   children: [
                     SizedBox(
                       width: MediaQuery.sizeOf(context).width/2,
-                      child: Image.asset('assets/rooms/welcome.jpg'),
+                      child: Image.asset('assets/rooms/UpdatedWelcome.jpg'),
                     ),
                     SizedBox(
                       width: MediaQuery.sizeOf(context).width/2,
-                      child: Image.asset('assets/rooms/gym.jpg'),
+                      child: Image.asset('assets/rooms/UpdatedGym.jpg'),
                     ),
                   ],
                 ),
@@ -516,11 +516,11 @@ class _RoomsState extends State<Rooms> {
                   children: [
                     SizedBox(
                       width: MediaQuery.sizeOf(context).width/2,
-                      child: Image.asset('assets/rooms/quiet.jpg') //3 pixels too tall
+                      child: Image.asset('assets/rooms/UpdatedQuiet.jpg') //3 pixels too tall
                       ),
                     SizedBox(
                       width: MediaQuery.sizeOf(context).width/2,
-                      child: Image.asset('assets/rooms/dining.jpg')
+                      child: Image.asset('assets/rooms/UpdatedDining.jpg')
                       ),
                   ],
                 ),
@@ -529,7 +529,7 @@ class _RoomsState extends State<Rooms> {
             Center(
               child: SizedBox(
                 width: MediaQuery.sizeOf(context).width/3,
-                child: Image.asset('assets/rooms/sensory.jpg')
+                child: Image.asset('assets/rooms/UpdatedS§ensory.jpg')
               ),
             ),
           ],
