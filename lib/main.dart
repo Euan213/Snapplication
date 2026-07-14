@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           seedColor: const Color.fromARGB(255, 0, 176, 0),
           primary: const Color.fromARGB(255, 0, 176, 0),
           onPrimary: Colors.white,
-          ),
+        ),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'SNAP App'),
@@ -41,73 +41,74 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(widget.title),
       ),
       body: Center(
-        child:
-        Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('assets/snap.png'),
-            Text("SNAP!", style: TextStyle(fontSize: 95),),
+            Text(
+              "SNAP!",
+              style: TextStyle(fontSize: 95),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 ElevatedButton(
-                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActivityEditor(title: 'Editor'))),
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ActivityEditor(title: 'Editor'))),
                   child: Text('Activity Editor'),
                 ),
                 ElevatedButton(
-                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => Rooms(title: 'Rooms'))),
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Rooms(title: 'Rooms'))),
                   child: Text('Rooms'),
                 ),
-            
               ],
             ),
           ],
         ),
       ),
-
     );
   }
 }
 
 typedef ActivityEntry = DropdownMenuEntry<Activity>;
+
 enum Activity {
   art('Art', 'assets/art.png'),
   cooking('Cooking', 'assets/cooking.png'),
   goo('Goo', 'assets/goo.png'),
   outdoors('Outdoors', 'assets/outdoors.png'),
-  parachute('Parachute','assets/Parachute.png'),
-  seesaw('Seesaw','assets/seesaw.png'),
+  parachute('Parachute', 'assets/Parachute.png'),
+  seesaw('Seesaw', 'assets/seesaw.png'),
   sports('Sports', 'assets/sports.png'),
   stories('Stories', 'assets/stories.png'),
   technology('Technology', 'assets/technology.png'),
   sensory('Sensory', 'assets/sensory.png'),
-  music('Music', ''),
-  dance('Dance', '');
+  music('Music', 'assets/music.png'),
+  dance('Dance', 'assets/dance.png');
 
   const Activity(this.text, this.image);
   final String text;
   final String image;
 
-  static final List<ActivityEntry> entries = UnmodifiableListView<ActivityEntry>(
+  static final List<ActivityEntry> entries =
+      UnmodifiableListView<ActivityEntry>(
     values.map<ActivityEntry>(
-      (Activity activity) => ActivityEntry(value: activity, label: activity.text),
+      (Activity activity) =>
+          ActivityEntry(value: activity, label: activity.text),
     ),
   );
 }
 
-class InformationTruck
-{
+class InformationTruck {
   InformationTruck();
 
   Activity act1 = Activity.art;
@@ -117,13 +118,12 @@ class InformationTruck
   Activity act5 = Activity.cooking;
   Activity act6 = Activity.technology;
 
-  String? act1Text; 
-  String? act2Text; 
-  String? act3Text; 
-  String? act4Text; 
-  String? act5Text; 
-  String? act6Text; 
-
+  String? act1Text;
+  String? act2Text;
+  String? act3Text;
+  String? act4Text;
+  String? act5Text;
+  String? act6Text;
 }
 
 class ActivityEditor extends StatefulWidget {
@@ -135,79 +135,74 @@ class ActivityEditor extends StatefulWidget {
   State<ActivityEditor> createState() => _ActivityEditorState();
 }
 
-class ActivityField extends StatelessWidget
-{
-  const ActivityField({super.key, required this.id, required this.truck, this.initial=Activity.art});
+class ActivityField extends StatelessWidget {
+  const ActivityField(
+      {super.key,
+      required this.id,
+      required this.truck,
+      this.initial = Activity.art});
 
   final int id;
   final InformationTruck truck;
   final Activity initial;
 
-  void dropdownUpdateTruck(Activity selected)
-  {
-    id==1?
-    {
-      truck.act1=selected,
-      truck.act1Text = null,
-    }:id==2?
-    {
-      truck.act2=selected,
-      truck.act2Text = null,
-    }:id==3?
-    {
-      truck.act3=selected,
-      truck.act3Text = null,
-    }:id==4?
-    {
-      truck.act4=selected,
-      truck.act4Text = null,
-    }:id==5?
-    {
-      truck.act5=selected,
-      truck.act5Text = null,
-    }:
-    {
-      truck.act6=selected,
-      truck.act6Text = null,
-    };
+  void dropdownUpdateTruck(Activity selected) {
+    id == 1
+        ? {
+            truck.act1 = selected,
+            truck.act1Text = null,
+          }
+        : id == 2
+            ? {
+                truck.act2 = selected,
+                truck.act2Text = null,
+              }
+            : id == 3
+                ? {
+                    truck.act3 = selected,
+                    truck.act3Text = null,
+                  }
+                : id == 4
+                    ? {
+                        truck.act4 = selected,
+                        truck.act4Text = null,
+                      }
+                    : id == 5
+                        ? {
+                            truck.act5 = selected,
+                            truck.act5Text = null,
+                          }
+                        : {
+                            truck.act6 = selected,
+                            truck.act6Text = null,
+                          };
   }
 
-  void textfieldUpdateTruck (String val)
-  {
-    id==1?
-    {
-      truck.act1Text = val
-    }:id==2?
-    {
-      truck.act2Text = val
-    }:id==3?
-    {
-      truck.act3Text = val
-    }:id==4?
-    {
-      truck.act4Text = val
-    }:id==5?
-    {
-      truck.act5Text = val
-    }:
-    {
-      truck.act6Text = val
-    };
+  void textfieldUpdateTruck(String val) {
+    id == 1
+        ? {truck.act1Text = val}
+        : id == 2
+            ? {truck.act2Text = val}
+            : id == 3
+                ? {truck.act3Text = val}
+                : id == 4
+                    ? {truck.act4Text = val}
+                    : id == 5
+                        ? {truck.act5Text = val}
+                        : {truck.act6Text = val};
   }
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Column(
       children: [
         DropdownMenu<Activity>(
-          initialSelection: initial,
-          dropdownMenuEntries: Activity.entries, 
-          onSelected: (selected) => dropdownUpdateTruck(selected!)
-        ),
+            initialSelection: initial,
+            dropdownMenuEntries: Activity.entries,
+            onSelected: (selected) => dropdownUpdateTruck(selected!)),
         SizedBox(
           width: 100,
-          child: TextField( 
+          child: TextField(
             controller: TextEditingController(),
             decoration: InputDecoration(
               counterText: '',
@@ -221,13 +216,11 @@ class ActivityField extends StatelessWidget
   }
 }
 
-class _ActivityEditorState extends State<ActivityEditor> 
-{
+class _ActivityEditorState extends State<ActivityEditor> {
   InformationTruck truck = InformationTruck();
 
   @override
-  Widget build(BuildContext context) 
-  {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
@@ -246,9 +239,17 @@ class _ActivityEditorState extends State<ActivityEditor>
                   spacing: 10,
                   children: [
                     Text('First Morning Activity:'),
-                    ActivityField(id: 1, truck: truck, initial: Activity.art,),
+                    ActivityField(
+                      id: 1,
+                      truck: truck,
+                      initial: Activity.art,
+                    ),
                     Text('First Afternoon Activity:'),
-                    ActivityField(id: 4, truck: truck, initial: Activity.outdoors,),
+                    ActivityField(
+                      id: 4,
+                      truck: truck,
+                      initial: Activity.outdoors,
+                    ),
                   ],
                 ),
                 Spacer(),
@@ -256,9 +257,17 @@ class _ActivityEditorState extends State<ActivityEditor>
                   spacing: 10,
                   children: [
                     Text('Second Morning Activity:'),
-                    ActivityField(id: 2, truck: truck, initial: Activity.sports,),
+                    ActivityField(
+                      id: 2,
+                      truck: truck,
+                      initial: Activity.sports,
+                    ),
                     Text('Second Afternoon Activity:'),
-                    ActivityField(id: 5, truck: truck, initial: Activity.cooking,),
+                    ActivityField(
+                      id: 5,
+                      truck: truck,
+                      initial: Activity.cooking,
+                    ),
                   ],
                 ),
                 Spacer(),
@@ -266,17 +275,29 @@ class _ActivityEditorState extends State<ActivityEditor>
                   spacing: 10,
                   children: [
                     Text('Third Morning Activity:'),
-                    ActivityField(id: 3, truck: truck, initial: Activity.stories,),
+                    ActivityField(
+                      id: 3,
+                      truck: truck,
+                      initial: Activity.stories,
+                    ),
                     Text('Third Afternoon Activity:'),
-                    ActivityField(id: 6, truck: truck, initial: Activity.technology,),
+                    ActivityField(
+                      id: 6,
+                      truck: truck,
+                      initial: Activity.technology,
+                    ),
                   ],
                 ),
                 Spacer(),
               ],
             ),
             ElevatedButton(
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActivityDisplay(title: 'Activities', truck: truck,))),
-              child: Text('Run Selection'))
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ActivityDisplay(
+                          title: 'Activities',
+                          truck: truck,
+                        ))),
+                child: Text('Run Selection'))
           ],
         ),
       ),
@@ -285,8 +306,11 @@ class _ActivityEditorState extends State<ActivityEditor>
 }
 
 class ActivityDisplay extends StatefulWidget {
-
-  const ActivityDisplay({super.key, required this.title, required this.truck,});
+  const ActivityDisplay({
+    super.key,
+    required this.title,
+    required this.truck,
+  });
 
   final String title;
   final InformationTruck truck;
@@ -295,32 +319,37 @@ class ActivityDisplay extends StatefulWidget {
   State<ActivityDisplay> createState() => _ActivityDisplayState();
 }
 
-enum TimeOfDay{morning, lunch, afternoon, hometime}
+enum TimeOfDay { morning, lunch, afternoon, hometime }
 
 class _ActivityDisplayState extends State<ActivityDisplay> {
-
   DateTime now = DateTime.now();
 
-  TimeOfDay get timeOfDay
-  {
-    return now.hour<12 ? TimeOfDay.morning : now.hour==12? TimeOfDay.lunch : now.hour<15? TimeOfDay.afternoon : TimeOfDay.hometime;
+  TimeOfDay get timeOfDay {
+    return now.hour < 12
+        ? TimeOfDay.morning
+        : now.hour == 12
+            ? TimeOfDay.lunch
+            : now.hour < 15
+                ? TimeOfDay.afternoon
+                : TimeOfDay.hometime;
   }
 
   @override
-  Widget build(BuildContext context) 
-  {
-    String convertedDateTime = "${now.weekday==1? "Monday": now.weekday==2? "Tuesday": now.weekday==3? "Wednesday": now.weekday==4? "Thursday": now.weekday==5? "Friday":"Its the weekend why are you here?"
-    }, ${now.day.toString()}/${now.month.toString().padLeft(2,'0')}/${now.year.toString().padLeft(2,'0')}";
+  Widget build(BuildContext context) {
+    String convertedDateTime =
+        "${now.weekday == 1 ? "Monday" : now.weekday == 2 ? "Tuesday" : now.weekday == 3 ? "Wednesday" : now.weekday == 4 ? "Thursday" : now.weekday == 5 ? "Friday" : "Its the weekend why are you here?"}, ${now.day.toString()}/${now.month.toString().padLeft(2, '0')}/${now.year.toString().padLeft(2, '0')}";
 
-    if (timeOfDay != TimeOfDay.hometime)
-    {
-      int endTime = timeOfDay==TimeOfDay.morning? 12 : timeOfDay==TimeOfDay.lunch? 13 : 15;
-      DateTime nextTime = DateTime(now.year,  now.month, now.day, endTime);
+    if (timeOfDay != TimeOfDay.hometime) {
+      int endTime = timeOfDay == TimeOfDay.morning
+          ? 12
+          : timeOfDay == TimeOfDay.lunch
+              ? 13
+              : 15;
+      DateTime nextTime = DateTime(now.year, now.month, now.day, endTime);
       Duration tillNext = now.difference(nextTime);
 
-      Timer(Duration(seconds: tillNext.inSeconds), (){
-        if (mounted)
-        {
+      Timer(Duration(seconds: tillNext.inSeconds), () {
+        if (mounted) {
           setState(() {
             now = DateTime.now();
             timeOfDay;
@@ -328,148 +357,161 @@ class _ActivityDisplayState extends State<ActivityDisplay> {
         }
       });
     }
-    
+
     return Scaffold(
-      appBar: AppBar(title: Text(
-                widget.title, 
-                style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 45),
-              ),
-              toolbarHeight: 100,
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              iconTheme: IconThemeData(color: Theme.of(context).colorScheme.primary),
-),
+      appBar: AppBar(
+        title: Text(
+          widget.title,
+          style: TextStyle(
+              color: Theme.of(context).colorScheme.onPrimary, fontSize: 45),
+        ),
+        toolbarHeight: 100,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.primary),
+      ),
       body: Center(
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.fromLTRB(40,0,50,0),
-              child: Row(
-                children: [
-                  Text(
-                    convertedDateTime,
-                    style: TextStyle(
-                      fontSize: 28, 
-                      color: Theme.of(context).colorScheme.secondary
-                    ),
-                  ),
-                  Spacer(),
-                  DigitalClock(
-                    textStyle: TextStyle(
-                      fontFamily: 'ComicSans',
+              padding: EdgeInsets.fromLTRB(40, 0, 50, 0),
+              child: Row(children: [
+                Text(
+                  convertedDateTime,
+                  style: TextStyle(
                       fontSize: 28,
-                      color: Theme.of(context).colorScheme.secondary,
-                    ),
-                    isLive: true,
-                    showSeconds: false,                    
+                      color: Theme.of(context).colorScheme.secondary),
+                ),
+                Spacer(),
+                DigitalClock(
+                  textStyle: TextStyle(
+                    fontFamily: 'ComicSans',
+                    fontSize: 28,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
-                ]
-              ),
+                  isLive: true,
+                  showSeconds: false,
+                ),
+              ]),
             ),
             Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: timeOfDay==TimeOfDay.morning? <Widget>[
-                Spacer(),
-                Column(
-                  children:[
-                    SizedBox(
-                      width: MediaQuery.sizeOf(context).width/4,
-                      height: 270,
-                      child: Image.asset(widget.truck.act1.image),
-                    ),
-                    Text(widget.truck.act1Text==null? widget.truck.act1.text : widget.truck.act1Text!),
-                  ],
-                ),
-                Spacer(),
-                Column(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.sizeOf(context).width/4,
-                      height: 270,
-                      child: Image.asset(widget.truck.act2.image),
-                    ),
-                    Text(widget.truck.act2Text==null? widget.truck.act2.text : widget.truck.act2Text!),
-                  ],
-                ),
-                Spacer(),
-                Column(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.sizeOf(context).width/4,
-                      height:270,
-                      child: Image.asset(widget.truck.act3.image),
-                    ),
-                    Text(widget.truck.act3Text==null? widget.truck.act3.text : widget.truck.act3Text!),
-                  ],
-                ),
-                Spacer(),
-              ]
-              : timeOfDay==TimeOfDay.lunch? <Widget>[
-                Spacer(),
-                SizedBox(
-                  width: MediaQuery.sizeOf(context).width/5,
-                  child: Image.asset('assets/lunch.png'),
-                ),
-                Spacer(),
-                Text(
-                  "Lunch Time!",
-                  style: TextStyle(fontSize: 40),
-                ),
-                Spacer(),
-                SizedBox(
-                  width: MediaQuery.sizeOf(context).width/5,
-                  child: Image.asset('assets/lunch.png'),
-                ),
-                Spacer(),
-                ]
-
-              : timeOfDay==TimeOfDay.afternoon? <Widget>[
-                Spacer(),
-                Column(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.sizeOf(context).width/4,
-                      height:270,
-                      child: Image.asset(widget.truck.act4.image),
-                    ),
-                    Text(widget.truck.act4Text==null? widget.truck.act4.text : widget.truck.act4Text!),
-                  ],
-                ),
-                Spacer(),
-                Column(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.sizeOf(context).width/4,
-                      height:270,
-                      child: Image.asset(widget.truck.act5.image),
-                    ),
-                    Text(widget.truck.act5Text==null? widget.truck.act5.text : widget.truck.act5Text!),
-                  ],
-                ),
-                Spacer(),
-                Column(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.sizeOf(context).width/4,
-                      height:270,
-                      child: Image.asset(widget.truck.act6.image),
-                    ),
-                    Text(widget.truck.act6Text==null? widget.truck.act6.text : widget.truck.act6Text!),
-                  ],
-                ),
-                Spacer(),
-              ]
-              : <Widget>[
-                Column(
-                  children: [
-                    Image.asset('assets/home.png'),
-                    Text(
-                      "It's hometime! Goodbye everyone!", 
-                      style: TextStyle(fontSize: 40),
-                    ),
-                  ],
-                ),
-              ],
+              children: timeOfDay == TimeOfDay.morning
+                  ? <Widget>[
+                      Spacer(),
+                      Column(
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.sizeOf(context).width / 4,
+                            height: 270,
+                            child: Image.asset(widget.truck.act1.image),
+                          ),
+                          Text(widget.truck.act1Text == null
+                              ? widget.truck.act1.text
+                              : widget.truck.act1Text!),
+                        ],
+                      ),
+                      Spacer(),
+                      Column(
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.sizeOf(context).width / 4,
+                            height: 270,
+                            child: Image.asset(widget.truck.act2.image),
+                          ),
+                          Text(widget.truck.act2Text == null
+                              ? widget.truck.act2.text
+                              : widget.truck.act2Text!),
+                        ],
+                      ),
+                      Spacer(),
+                      Column(
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.sizeOf(context).width / 4,
+                            height: 270,
+                            child: Image.asset(widget.truck.act3.image),
+                          ),
+                          Text(widget.truck.act3Text == null
+                              ? widget.truck.act3.text
+                              : widget.truck.act3Text!),
+                        ],
+                      ),
+                      Spacer(),
+                    ]
+                  : timeOfDay == TimeOfDay.lunch
+                      ? <Widget>[
+                          Spacer(),
+                          SizedBox(
+                            width: MediaQuery.sizeOf(context).width / 5,
+                            child: Image.asset('assets/lunch.png'),
+                          ),
+                          Spacer(),
+                          Text(
+                            "Lunch Time!",
+                            style: TextStyle(fontSize: 40),
+                          ),
+                          Spacer(),
+                          SizedBox(
+                            width: MediaQuery.sizeOf(context).width / 5,
+                            child: Image.asset('assets/lunch.png'),
+                          ),
+                          Spacer(),
+                        ]
+                      : timeOfDay == TimeOfDay.afternoon
+                          ? <Widget>[
+                              Spacer(),
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    width: MediaQuery.sizeOf(context).width / 4,
+                                    height: 270,
+                                    child: Image.asset(widget.truck.act4.image),
+                                  ),
+                                  Text(widget.truck.act4Text == null
+                                      ? widget.truck.act4.text
+                                      : widget.truck.act4Text!),
+                                ],
+                              ),
+                              Spacer(),
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    width: MediaQuery.sizeOf(context).width / 4,
+                                    height: 270,
+                                    child: Image.asset(widget.truck.act5.image),
+                                  ),
+                                  Text(widget.truck.act5Text == null
+                                      ? widget.truck.act5.text
+                                      : widget.truck.act5Text!),
+                                ],
+                              ),
+                              Spacer(),
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    width: MediaQuery.sizeOf(context).width / 4,
+                                    height: 270,
+                                    child: Image.asset(widget.truck.act6.image),
+                                  ),
+                                  Text(widget.truck.act6Text == null
+                                      ? widget.truck.act6.text
+                                      : widget.truck.act6Text!),
+                                ],
+                              ),
+                              Spacer(),
+                            ]
+                          : <Widget>[
+                              Column(
+                                children: [
+                                  Image.asset('assets/home.png'),
+                                  Text(
+                                    "It's hometime! Goodbye everyone!",
+                                    style: TextStyle(fontSize: 40),
+                                  ),
+                                ],
+                              ),
+                            ],
             ),
             Spacer(),
           ],
@@ -489,48 +531,45 @@ class Rooms extends StatefulWidget {
 }
 
 class _RoomsState extends State<Rooms> {
-
   @override
-  Widget build(BuildContext context) 
-  {
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Stack(
-          children: [ 
+          children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Column(
                   children: [
                     SizedBox(
-                      width: MediaQuery.sizeOf(context).width/2,
+                      width: MediaQuery.sizeOf(context).width / 2,
                       child: Image.asset('assets/rooms/UpdatedWelcome.jpg'),
                     ),
                     SizedBox(
-                      width: MediaQuery.sizeOf(context).width/2,
-                      child: Image.asset('assets/rooms/UpdatedGym.jpg'),
+                      width: MediaQuery.sizeOf(context).width / 2,
+                      child: Image.asset('assets/rooms/UpdatedQuiet.jpg'),
                     ),
                   ],
                 ),
                 Column(
                   children: [
                     SizedBox(
-                      width: MediaQuery.sizeOf(context).width/2,
-                      child: Image.asset('assets/rooms/UpdatedQuiet.jpg') //3 pixels too tall
-                      ),
+                        width: MediaQuery.sizeOf(context).width / 2,
+                        child: Image.asset(
+                            'assets/rooms/UpdatedGym.jpg') //3 pixels too tall
+                        ),
                     SizedBox(
-                      width: MediaQuery.sizeOf(context).width/2,
-                      child: Image.asset('assets/rooms/UpdatedDining.jpg')
-                      ),
+                        width: MediaQuery.sizeOf(context).width / 2,
+                        child: Image.asset('assets/rooms/UpdatedDining.jpg')),
                   ],
                 ),
               ],
             ),
             Center(
               child: SizedBox(
-                width: MediaQuery.sizeOf(context).width/3,
-                child: Image.asset('assets/rooms/UpdatedS§ensory.jpg')
-              ),
+                  width: MediaQuery.sizeOf(context).width / 2.5,
+                  child: Image.asset('assets/rooms/UpdatedSensory.jpg')),
             ),
           ],
         ),
